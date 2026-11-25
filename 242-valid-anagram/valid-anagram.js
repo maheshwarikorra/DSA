@@ -9,46 +9,32 @@ var isAnagram = function(s, t) {
     if(s.length ==0 && t.length==0) return true;
    
     const anagramMap= new Map();
-    const anagramSet= new Map();
+
+    
     for(ch of s)
     {
-        if(!anagramSet.has(ch))
+        if(anagramMap.has(ch))
         {
-            anagramSet.set(ch,1)
+           anagramMap.set(ch,anagramMap.get(ch) +1)
+
         }
         else
         {
-           let count =anagramSet.get(ch) +1;
-           anagramSet.set(ch,count)
-
+        anagramMap.set(ch,1)  
         }
-        
         
     }
-   
-    
-    
-    for(ch of t)
-    {
-        if(!anagramMap.has(ch))
-        {
-            anagramMap.set(ch,1)
-        }
-        else
-        {
-           let count =anagramMap.get(ch) +1;
-           anagramMap.set(ch,count)
 
-        }
-        
-        
-    }
+    
    
 
-    for (ch of anagramSet.keys())
+    for (ch of t)
     {
-        if( !anagramMap.has(ch) ||  anagramSet.get(ch)!=anagramMap.get(ch) ) return false;
+
+        if( !anagramMap.has(ch) || anagramMap.get(ch)==0 ) return false;
+        
+        anagramMap.set(ch,anagramMap.get(ch) -1)
 
     }
-    return true;s
+    return true;
 };
