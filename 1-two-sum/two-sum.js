@@ -5,9 +5,6 @@
  */
 var twoSum = function(nums, target) {
 
-    if(nums.length ==0 )return false;
-    if(nums.length ==1 && target == nums[0]) return true;
-
     const twoSumSet= new Map();
 
     for (var i=0; i < nums.length; i++)
